@@ -27,6 +27,18 @@
 (setq read-process-output-max (* 4 1024 1024))
 (setq process-adaptive-read-buffering nil)
 
+;; if network avaliable
+(setq package-archives '(("gnu" . "https://mirrors.ustc.edu.cn/elpa/gnu/")
+                         ("melpa" . "https://mirrors.ustc.edu.cn/elpa/melpa/")
+                         ("nongnu" . "https://mirrors.ustc.edu.cn/elpa/nongnu/")))
+
+;; if offline
+;; (setq package-archives
+;;           `(("melpa" . ,(concat user-home-directory "~/.elpa-mirror/melpa/"))
+;;             ("org"   . ,(concat user-home-directory "~/.elpa-mirror/org/"))
+;;             ("nongnu"   . ,(concat user-home-directory "~/.elpa-mirror/nongnu/"))
+;;             ("gnu"   . ,(concat user-home-directory "~/.elpa-mirror/gnu/"))))
+
 ;; open init.el file
 (defun open-init-file()
   (interactive)
