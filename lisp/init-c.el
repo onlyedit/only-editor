@@ -7,7 +7,9 @@
 (setq c-default-style "linux"
       c-basic-offset 4
       tab-width 4
-      indent-tabs-mode nil)
+      indent-tabs-mode nil
+      c-ts-mode-indent-offset 4
+      c-ts-mode-indent-style 'bsd)
 
 
 (use-package google-c-style
@@ -15,4 +17,5 @@
   :hook
   (c-mode-common-hook . google-set-c-style)
   (c-mode-common-hook . google-make-newline-indent))
+
 (provide 'init-c)

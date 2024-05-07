@@ -27,8 +27,8 @@
 ;; Required by `use-package'
 (use-package diminish :ensure t)
 ;;防止反复调用 package-refresh-contents 会影响加载速度
-;;(when (not package-archive-contents)
-;;  (package-refresh-contents))
+(when (not package-archive-contents)
+  (package-refresh-contents))
 
 ;; open init file f2
 ;; 快速打开配置文件
@@ -53,6 +53,7 @@
 (require 'init-highlight)
 (require 'init-projectile)
 (require 'init-eglot)
+(require 'init-snippet)
 ;;program languages
 (require 'init-c)
 
