@@ -96,7 +96,7 @@
 
 ;; Increase selected region by semantic units
 (use-package expand-region
-  :bind ("C-=" . er/expand-region)
+  :bind ("M-h" . er/expand-region)
   :config
   (defun treesit-mark-bigger-node ()
     "Use tree-sitter to mark regions."
