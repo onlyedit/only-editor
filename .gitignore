@@ -82,3 +82,5 @@ tutorial/
 url/
 var/
 workspace/
+.session
+lisp/.emacs.desktop
