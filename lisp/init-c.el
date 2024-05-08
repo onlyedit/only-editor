@@ -18,4 +18,10 @@
   (c-mode-common-hook . google-set-c-style)
   (c-mode-common-hook . google-make-newline-indent))
 
+
+(use-package modern-cpp-font-lock
+  :ensure
+  :diminish
+  :init (modern-c++-font-lock-global-mode t))
+
 (provide 'init-c)
