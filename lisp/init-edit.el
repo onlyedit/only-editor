@@ -5,45 +5,46 @@
 (defun too-long-file-p ()
   "Check whether the file is too long."
   (or (> (buffer-size) 500000)
-      (and (fboundp 'buffer-line-statistics)
-	              (> (car (buffer-line-statistics)) 10000))))
+   (and (fboundp 'buffer-line-statistics)
+     (> (car (buffer-line-statistics)) 10000))))
 
+;; hard to use
 ;; Minor mode to aggressively keep your code always indented
-(use-package aggressive-indent
-  :diminish
-  :hook ((after-init . global-aggressive-indent-mode)
-         ;; NOTE: Disable in large files due to the performance issues
-         ;; https://github.com/Malabarba/aggressive-indent-mode/issues/73
-         (find-file . (lambda ()
-                        (when (too-long-file-p)
-                          (aggressive-indent-mode -1)))))
-    :config
-  ;; Disable in some modes
-  (dolist (mode '(gitconfig-mode
-                  asm-mode web-mode html-mode css-mode
-                  go-mode scala-mode
-                  shell-mode term-mode vterm-mode
-                  prolog-inferior-mode))
-    (add-to-list 'aggressive-indent-excluded-modes mode))
+;; (use-package aggressive-indent
+;;   :diminish
+;;   :hook ((after-init . global-aggressive-indent-mode)
+;;         ;; NOTE: Disable in large files due to the performance issues
+;;         ;; https://github.com/Malabarba/aggressive-indent-mode/issues/73
+;;         (find-file . (lambda ()
+;;                       (when (too-long-file-p)
+;;                         (aggressive-indent-mode -1)))))
+;;   :config
+;;   ;; Disable in some modes
+;;   (dolist (mode '(gitconfig-mode
+;;                  asm-mode web-mode html-mode css-mode
+;;                  go-mode scala-mode
+;;                  shell-mode term-mode vterm-mode
+;;                  prolog-inferior-mode))
+;;    (add-to-list 'aggressive-indent-excluded-modes mode))
 
-  ;; Disable in some commands
-  (add-to-list 'aggressive-indent-protected-commands #'delete-trailing-whitespace t)
+;;   ;; Disable in some commands
+;;   (add-to-list 'aggressive-indent-protected-commands #'delete-trailing-whitespace t)
 
-  ;; Be slightly less aggressive in C/C++/C#/Java/Go/Swift
-  (add-to-list 'aggressive-indent-dont-indent-if
-               '(and (derived-mode-p 'c-mode 'c++-mode 'csharp-mode
-                                     'java-mode 'go-mode 'swift-mode)
-                     (null (string-match "\\([;{}]\\|\\b\\(if\\|for\\|while\\)\\b\\)"
-                                         (thing-at-point 'line))))))
+;;   ;; Be slightly less aggressive in C/C++/C#/Java/Go/Swift
+;;   (add-to-list 'aggressive-indent-dont-indent-if
+;;               '(and (derived-mode-p 'c-mode 'c++-mode 'csharp-mode
+;;                                    'java-mode 'go-mode 'swift-mode)
+;;                    (null (string-match "\\([;{}]\\|\\b\\(if\\|for\\|while\\)\\b\\)"
+;;                                       (thing-at-point 'line))))))
 
 ;; Show number of matches in mode-line while searching
 (use-package anzu
   :diminish
   :bind (([remap query-replace] . anzu-query-replace)
-         ([remap query-replace-regexp] . anzu-query-replace-regexp)
-         :map isearch-mode-map
-         ([remap isearch-query-replace] . anzu-isearch-query-replace)
-         ([remap isearch-query-replace-regexp] . anzu-isearch-query-replace-regexp))
+     ([remap query-replace-regexp] . anzu-query-replace-regexp)
+     :map isearch-mode-map
+     ([remap isearch-query-replace] . anzu-isearch-query-replace)
+     ([remap isearch-query-replace-regexp] . anzu-isearch-query-replace-regexp))
   :hook (after-init . global-anzu-mode))
 
 ;; Redefine M-< and M-> for some modes

@@ -84,3 +84,6 @@ var/
 workspace/
 .session
 lisp/.emacs.desktop
+*.eld
+*.cache
+*.eld
