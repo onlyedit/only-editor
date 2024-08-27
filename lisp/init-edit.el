@@ -3,7 +3,7 @@
 ;;; Code:
 ;; Show number of matches in mode-line while searching
 (use-package anzu
-  :straight t
+  :ensure t
   :bind (([remap query-replace] . anzu-query-replace)
      ([remap query-replace-regexp] . anzu-query-replace-regexp)
      :map isearch-mode-map
@@ -13,12 +13,12 @@
 
 ;; Redefine M-< and M-> for some modes
 (use-package beginend
-  :straight t
+  :ensure t
   :hook (after-init . beginend-global-mode))
 
 ;; Increase selected region by semantic units
 (use-package expand-region
-  :straight t
+  :ensure t
   :bind ("M-h" . er/expand-region)
   :config
   (defun treesit-mark-bigger-node ()
@@ -38,29 +38,29 @@
 
 ;; Move to the beginning/end of line or code
 (use-package mwim
-  :straight t
+  :ensure t
   :bind (([remap move-beginning-of-line] . mwim-beginning)
          ([remap move-end-of-line] . mwim-end)))
 
 (use-package vundo
-  :straight t
+  :ensure t
   :bind ("C-x u" . vundo)
   :config (setq vundo-glyph-alist vundo-unicode-symbols))
 
-(use-package exec-path-from-shell
-  :straight (exec-path-from-shell :type git :host github :repo "purcell/exec-path-from-shell")
-  :config
-  ;; 如果你需要从 shell 继承额外的环境变量，可以在这里添加
-  (setq exec-path-from-shell-variables '("PATH" "MANPATH" "SHELL"))
-  (exec-path-from-shell-initialize))
+;; (use-package exec-path-from-shell
+;;   :ensure t
+;;   :config
+;;   ;; 如果你需要从 shell 继承额外的环境变量，可以在这里添加
+;;   (setq exec-path-from-shell-variables '("PATH" "MANPATH" "SHELL"))
+;;   (exec-path-from-shell-initialize))
 
 (use-package whole-line-or-region
-  :straight (whole-line-or-region :type git :host github :repo "purcell/whole-line-or-region")
+  :ensure t
   :config
   (whole-line-or-region-global-mode 1))
 
 (use-package symbol-overlay
-  :straight (symbol-overlay :type git :host github :repo "wolray/symbol-overlay")
+  :ensure t
   :bind (("M-i" . symbol-overlay-put)
          ("M-n" . symbol-overlay-switch-forward)
          ("M-p" . symbol-overlay-switch-backward)
@@ -76,6 +76,8 @@
   :ensure nil
   :hook ((prog-mode yaml-mode conf-mode) . display-line-numbers-mode)
   :init (setq display-line-numbers-width-start t))
+
+
 
 (provide 'init-edit)
 ;;; end of init-edit.el

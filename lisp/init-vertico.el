@@ -1,12 +1,5 @@
-;;; init-vertico.el -- emacs config
-;;; Commery
- 
-;;在文件最开头添加地个 文件作用域的变量设置，设置变量的绑定方式
-;; -*- lexical-binding: t -*-
-;;; Code:
-;; Example configuration for vertico
 (use-package vertico
-  :straight (vertico :type git :host github :repo "minad/vertico")
+  :ensure t
   :init
   (vertico-mode 1))
 ;; Persist history over Emacs restarts. Vertico sorts by history position.
@@ -39,9 +32,10 @@
   ;; mode.  Vertico commands are hidden in normal buffers. This setting is
   ;; useful beyond Vertico.
   (setq read-extended-command-predicate #'command-completion-default-include-p))
+
 ;; Optionally use the `orderless' completion style.
 (use-package orderless
-  :straight t 
+  :ensure t 
   :init
   ;; Configure a custom style dispatcher (see the Consult wiki)
   ;; (setq orderless-style-dispatchers '(+orderless-consult-dispatch orderless-affix-dispatch)
@@ -50,4 +44,3 @@
         completion-category-defaults nil
         completion-category-overrides '((file (styles partial-completion)))))
 (provide 'init-vertico)
-;;; end of init-vertico.el

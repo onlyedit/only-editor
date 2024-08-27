@@ -1,8 +1,9 @@
-;;; init-sessions.el --- Save and restore editor sessions between restarts -*- lexical-binding: t -*-
-;;; Commentary:
-;;; Code:
+(add-hook 'after-init-hook 'recentf-mode)
+(setq-default
+ recentf-max-saved-items 1000
+ recentf-exclude `("/tmp/" "/ssh:" ,(concat package-user-dir "/.*-autoloads\\.el\\'")))
 
-;; save a list of open files in ~/.emacs.d/.emacs.desktop
+; save a list of open files in ~/.emacs.d/.emacs.desktop
 (setq desktop-path (list user-emacs-directory)
       desktop-auto-save-timeout 600)
 (desktop-save-mode 1)
@@ -34,7 +35,7 @@
 (add-hook 'after-init-hook 'savehist-mode)
 
 (use-package session
-  :straight t)
+  :ensure t)
 
 (setq session-save-file (locate-user-emacs-file ".session"))
 (setq session-name-disable-regexp "\\(?:\\`'/tmp\\|\\.git/[A-Z_]+\\'\\)")
@@ -71,5 +72,4 @@
         tags-table-list))
 
 
-(provide 'init-sessions)
-;;; init-sessions.el ends here
+(provide 'init-session)
