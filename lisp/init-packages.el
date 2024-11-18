@@ -4,7 +4,7 @@
 (defun add-mirror-prefix (url)
   "Add mirror prefix to GitHub URLs if `use-mirror` is non-nil."
   (if (and use-mirror (string-match "^https://github\\.com" url))
-      (concat "https://mirror.ghproxy.com/" url)
+      (concat "https://gh-proxy.com/" url)
     url))
 
 (defun update-package-vc-urls (packages)

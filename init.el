@@ -31,6 +31,7 @@
 (require 'init-edit)
 (require 'init-session)
 (require 'init-c-lang)
+(require 'init-magit)
 
 ;; 加载自定义变量文件
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
